@@ -6,23 +6,33 @@ using System.Threading.Tasks;
 
 namespace DSoftAssignment
 {
-    class IngredientContainer
+
+    /* Class representing a single ingredient type
+     * 
+     * */
+    public enum IngredientType { Produce, Meat, Pantry, Other };
+    class Ingredient
     {
         private Boolean isProduce;
+        private Boolean isOrganic;
         private String name;
         private IngredientType _type;
 
         // Cost of the ingredient for one unit of measurement
         private Double cost;
 
-        public IngredientContainer(String name, IngredientType type, Double cost)
+        public Ingredient(String name, IngredientType type, Double cost, Boolean isOrganic)
         {
             this.name = name;
             this._type = type;
             isProduce = this._type == IngredientType.Produce;
             this.cost = cost;
-            Console.WriteLine("made " + name);
+            this.isOrganic = isOrganic;
+            Console.WriteLine(name + isProduce);
         }
 
+        public void printStats(){
+            Console.WriteLine(name + isProduce);
+        }
     }
 }
