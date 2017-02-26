@@ -31,6 +31,15 @@ namespace DSoftAssignment
             Console.WriteLine(name + isProduce);
         }
 
+        public String getName(){
+            return this.name;
+        }
+
+        public Boolean getIsProduce()
+        {
+            return this.isProduce;
+        }
+
         public void printStats(){
             Console.WriteLine(name + isProduce);
         }

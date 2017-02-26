@@ -8,21 +8,32 @@ namespace DSoftAssignment
 {
     class IngredientContainer
     {
-        private Boolean isProduce;
-        private String name;
-        private IngredientType _type;
+        //Dictionary with Ingredient name string keys and Ingredient Object values
+        Dictionary<String, Ingredient> IngredientDict = new Dictionary<String, Ingredient>();
 
-        // Cost of the ingredient for one unit of measurement
-        private Double cost;
 
-        public IngredientContainer(String name, IngredientType type, Double cost)
+        public IngredientContainer()
         {
-            this.name = name;
-            this._type = type;
-            isProduce = this._type == IngredientType.Produce;
-            this.cost = cost;
-            Console.WriteLine("made " + name);
+
         }
 
+        public void addIngredient(Ingredient theIngredient)
+        {
+            //Only add ingredient to dictionary if it doesn't already exist, won't overwrite if ingredient already exists
+            if (!IngredientDict.ContainsKey(theIngredient.getName()))
+            {
+                IngredientDict.Add(theIngredient.getName(), theIngredient);
+                
+            }
+        }
+
+        public void printDict()
+        {
+            foreach (KeyValuePair<string, Ingredient> kvp in this.IngredientDict)
+            {
+                Console.WriteLine("Key = {0}, Value = {1}",
+                    kvp.Key, kvp.Value);
+            }
+        }
     }
 }

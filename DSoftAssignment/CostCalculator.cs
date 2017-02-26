@@ -24,12 +24,12 @@ namespace DSoftAssignment
 
             // Instantiate the CostCalulator Class
 
-            CostCalculator MainCalculator = new CostCalculator();
+            //CostCalculator MainCalculator = new CostCalculator();
 
             // Read input from the input.txt file
             //MainCalculator.getInput();
 
-            Console.Write(MainCalculator.fileInput);
+            //Console.Write(MainCalculator.fileInput);
 
             //string text = System.IO.File.ReadAllText(@"C:\Users\sam\Documents\Visual Studio 2013\Projects\DSoftAssignment\input.txt");
 
@@ -52,6 +52,8 @@ namespace DSoftAssignment
              * */
 
             string[] fileLines = getInput();
+
+            IngredientContainer ingredientContainer = new IngredientContainer();
 
             // Boolean flag signifying if the input has reached the recipe portion (the latter half)
             Boolean recipeSection = false;
@@ -98,6 +100,8 @@ namespace DSoftAssignment
                         //IngredientContainer newIngredient = new IngredientContainer()
 
                         Ingredient newIngredient = ParseHandler.parseIngredientLine(line, currentType);
+                        ingredientContainer.addIngredient(newIngredient);
+
                     }
 
                     //Recipe section has been reached, start processing recipes
@@ -115,6 +119,8 @@ namespace DSoftAssignment
 
 
             }
+
+            ingredientContainer.printDict();
 
             Console.ReadKey();
         }

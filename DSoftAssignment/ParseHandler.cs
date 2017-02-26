@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace DSoftAssignment
 {
+
+    /*
+     * ParseHandler class parses input strings and returns a corresponding ingredient or recipe object
+     *  
+     * */
+
     class ParseHandler
     {
         /*  Make a decription string array
@@ -67,6 +73,42 @@ namespace DSoftAssignment
                 {
                     return new Ingredient(IngredientName, currentType, IngredientPrice, isOrganic);
                 }
+            }
+            else 
+            {
+                //If no 'of' is detected, the remaining tokens represent the ingredient name and price
+                // e.g. - 1 chicken breast = $2.19
+                string[] nameAndPrice = new string[splitByWhiteSpace.Length - 2];
+                Array.Copy(splitByWhiteSpace, 2, nameAndPrice, 0, nameAndPrice.Length);
+                string nameAndPriceString = String.Join(" ", nameAndPrice);
+                string[] priceArray = nameAndPriceString.Split('=');
+                string ExtractedPrice = "";
+                string IngredientName = "";
+                Boolean isOrganic = false;
+                double IngredientPrice = 0;
+                if (priceArray.Length > 0)
+                {
+                    //Extract Name (NOTE: check if capitals matter)
+                    IngredientName = priceArray[0];
+                    if (IngredientName.Contains("organic"))
+                    {
+                        isOrganic = true;
+                        IngredientName = IngredientName.Substring(7).Trim(); // NOTE: organic is 7 letters, so the name should be contained in the substring following the 7th index
+                    }
+                    //Check if 'organic' is present, if it is, extract from name string and set ingredient to organic type
+
+                    //Extract Price 
+                    string Price = priceArray[priceArray.Length - 1].Trim();
+                    ExtractedPrice = Price.TrimStart('$');
+                    IngredientPrice = Convert.ToDouble(ExtractedPrice);
+                }
+
+                // Logic to make sure line was successfully parsed so Ingredient object can be successfully made
+                if (!ExtractedPrice.Equals("") && !IngredientName.Equals(""))
+                {
+                    return new Ingredient(IngredientName.ToLower(), currentType, IngredientPrice, isOrganic);
+                }
+
             }
 
             return null;
