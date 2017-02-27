@@ -11,7 +11,7 @@ namespace DSoftAssignment
         //Dictionary with Ingredient name string keys and Ingredient Object values
         Dictionary<String, Ingredient> IngredientDict = new Dictionary<String, Ingredient>();
 
-
+        //Empty constructor
         public IngredientContainer()
         {
 
@@ -25,6 +25,28 @@ namespace DSoftAssignment
                 IngredientDict.Add(theIngredient.getName(), theIngredient);
                 
             }
+        }
+
+        public Ingredient getIngredient(String name)
+        {
+            try
+            {
+                return IngredientDict[name];
+            }
+            catch (KeyNotFoundException)
+            {
+                Console.WriteLine("Key = \"tif\" is not found.");
+                return null;
+            }
+
+            //if (IngredientDict.TryGetValue(name, out value))
+            //{
+            //    Console.WriteLine("For key = \"tif\", value = {0}.", value);
+            //}
+            //else
+            //{
+            //    Console.WriteLine("Key = \"tif\" is not found.");
+            //}
         }
 
         public void printDict()

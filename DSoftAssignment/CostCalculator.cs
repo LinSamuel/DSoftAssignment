@@ -86,21 +86,12 @@ namespace DSoftAssignment
                     {
                         Console.WriteLine("\n" + line);
 
-                        /*  Make a decription string array
-                         *  Example strings: 1 cup of organic olive oil = $1.92, 1 chicken breast = $2.19
-                         *  - The first character will always be a single unit for that particular ingredient
-                         *  - Next character will either be:
-                         *      - A unit of measurement, in which case, continue
-                         *      - Not a unit of measurement, in which case the rest of the string describes the name of the ingredient
-                         *  - Ignore 'of'
-                         *  - Check if 'organic' is in the string
-                         *  
-                         *  TODO: turn this into a factory maybe?
-                         * */
-                        //IngredientContainer newIngredient = new IngredientContainer()
-
+                        //Add valid ingredients into the IngredientContainer
                         Ingredient newIngredient = ParseHandler.parseIngredientLine(line, currentType);
-                        ingredientContainer.addIngredient(newIngredient);
+                        if (newIngredient != null)
+                        {
+                            ingredientContainer.addIngredient(newIngredient);
+                        }                      
 
                     }
 
