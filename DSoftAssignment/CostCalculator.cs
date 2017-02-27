@@ -67,6 +67,7 @@ namespace DSoftAssignment
             // Recipe placeholder for the current recipe being populated
             Recipe currRecipe = new Recipe();
             string currRecipeName = "";
+            int counter = 0; //Coutner variable to keep track of the amount of lines already iterated, used to check if the last line is currently being processed
 
             
             // Read each line read from the file
@@ -122,14 +123,37 @@ namespace DSoftAssignment
                         currRecipe = new Recipe(currRecipeName);
                         newRecipe = false;
                     }
-                    RecipeIngredient currRecipeIngredient = ParseHandler.parseRecipeLine(line);
+                    // New recipe detected, start a new recipe
+                    if (line.Length > 0 && line.Split()[0].Equals("Recipe"))
+                    {
+                        Console.WriteLine("\n New recipe: " + line);
+                        recipeSection = true;
+                        newRecipe = true;
+                        currRecipeName = line.Trim();
+
+                        // Print recipe stats here
+                        currRecipe.calculateStats();
+                    }
+                    RecipeIngredient currRecipeIngredient = ParseHandler.parseRecipeLine(line, ingredientContainer);
+
+                    if (currRecipeIngredient != null)
+                    {
+                        //Console.WriteLine("adding " + currRecipeIngredient.getIngredient().getName());
+                        currRecipe.addRecipeIngredient(currRecipeIngredient);
+                    }
+                    //If it's the last line processed, then it's the last line for the last recipe as well
+                    if (counter == (fileLines.Length - 1))
+                    {
+
+                    }
                 }
+                counter++;
 
 
 
             }
 
-            ingredientContainer.printDict();
+            //ingredientContainer.printDict();
 
             Console.ReadKey();
         }

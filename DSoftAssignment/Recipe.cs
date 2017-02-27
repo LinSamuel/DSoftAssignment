@@ -31,6 +31,38 @@ namespace DSoftAssignment
                 ingredientList.Add(ingredient);
             }
         }
+
+        // After analyzing the sample output, it seems like the sales tax is calculated by raw value, ignoring the measurements in the recipe
+        public double calculateSalesTax(){
+            double salesTax = 0;
+            foreach (RecipeIngredient ingred in ingredientList)
+            {
+                // If it is not produce, append to sales tax
+                if (!ingred.getIngredient().getIsProduce())
+                {
+                    salesTax += ingred.getIngredient().getCost();
+                }
+                
+            }
+            salesTax *= 100;
+            return (double) Math.Round(salesTax * 0.086 / 7) * 7 / 100;
+        }
+
+        public double calculateTotalCost()
+        {
+            double totalCost = 0;
+            foreach (RecipeIngredient ingred in ingredientList)
+            {
+                totalCost += ingred.getAmount() * ingred.getIngredient().getCost();
+            }
+            return totalCost;
+        }
+
+        public void calculateStats()
+        {
+            Console.WriteLine("Tax = $" + calculateSalesTax());
+            Console.WriteLine("Total = $" + calculateTotalCost());
+        }
         
     }
 }

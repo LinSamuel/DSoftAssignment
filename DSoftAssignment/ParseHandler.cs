@@ -78,7 +78,7 @@ namespace DSoftAssignment
                 // Logic to make sure line was successfully parsed so Ingredient object can be successfully made
                 if (!ExtractedPrice.Equals("") && !IngredientName.Equals(""))
                 {
-                    return new Ingredient(IngredientName, currentType, IngredientPrice, isOrganic);
+                    return new Ingredient(IngredientName.ToLower(), currentType, IngredientPrice, isOrganic);
                 }
             }
             //else 
@@ -120,13 +120,35 @@ namespace DSoftAssignment
             return null;
         }
         // could work? ^\d+(?:\.?\d*|\s\d+\/\d+|\d+\/\d+)$
-        public static RecipeIngredient parseRecipeLine(string input){
+        public static RecipeIngredient parseRecipeLine(string input, IngredientContainer container){
             Regex re = new Regex(@"(\d+\/\d|\d+)");
             //Match m = re.Match(input);
+            double amount = 0;
             foreach (Match match in re.Matches(input))
             {
                 Console.WriteLine(match);
+                Console.WriteLine("trying to parse...");
+                try
+                {
+                    amount += measurementConversion(match.ToString());
+                }
+                catch (Exception)
+                {
+                    Console.WriteLine("Could not process measurement amount");
+                }
+
             }
+            Console.WriteLine("current double " + amount);
+
+            Ingredient currIngredient = findIngredient(input, container);
+
+            if (currIngredient != null && amount != 0)
+            {
+                return new RecipeIngredient(currIngredient, amount);
+            }
+            //RecipeIngredient currRecipeIngredient = new RecipeIngredient(currIngredient, amount);
+            Console.WriteLine("returning null :(");
+            return null;
             //if (m.Success)
             //{
             //    foreach()
@@ -136,9 +158,68 @@ namespace DSoftAssignment
             //{
             //    Console.WriteLine("You didn't enter a string containing a number!");
             //}
-            return null;
+
         }
 
+        /*  
+         * Helper function to get double value from a number or number/fraction combo
+         * e.g. 3/4 -> 0.75, 1 1/4 -> 1.25, 1 -> 1
+         * */
+        public static double measurementConversion(string amount)
+        {
+            double result;
+
+            // return if it's just a regular number
+            if (double.TryParse(amount, out result))
+            {
+                return result;
+            }
+
+            string[] split = amount.Split(new char[] { ' ', '/' });
+
+            if (split.Length == 2 || split.Length == 3)
+            {
+                int a, b;
+
+                if (int.TryParse(split[0], out a) && int.TryParse(split[1], out b))
+                {
+                    // Scenario when input is just a fraction (e.g. 3/4)
+                    if (split.Length == 2)
+                    {
+                        return (double)a / b;
+                    }
+
+                    int c;
+
+                    // Scenario when input is a number and a fraction (e.g. 1 1/4)
+                    if (int.TryParse(split[2], out c))
+                    {
+                        return a + (double)b / c;
+                    }
+                }
+            }
+
+            throw new FormatException("Not a valid fraction.");
+        }
+        
+        // Helper function to help identify ingredient given a recipe line
+        public static Ingredient findIngredient(string input, IngredientContainer container)
+        {
+            Dictionary<string, Ingredient>.KeyCollection containerKeys = container.getContainerKeys();
+
+            //Iterate through the key names and pinpoint an ingredient where the name
+            foreach (string name in containerKeys)
+            {
+                //Console.WriteLine("searching for.." + name + " in " + input);
+                if (input.Contains(name.Trim()))
+                {
+                    //Console.WriteLine("found!0");
+                    return container.getIngredient(name);
+                }
+            }
+            // if code reaches here, no valid ingredients found, return null
+            return null;
+        }
         
 
         

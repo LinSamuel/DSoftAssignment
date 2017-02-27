@@ -27,6 +27,11 @@ namespace DSoftAssignment
             }
         }
 
+        public Dictionary<string, Ingredient>.KeyCollection getContainerKeys()
+        {
+            return this.IngredientDict.Keys;
+        }
+
         public Ingredient getIngredient(String name)
         {
             try
