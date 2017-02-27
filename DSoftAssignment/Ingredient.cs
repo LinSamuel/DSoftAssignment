@@ -40,6 +40,16 @@ namespace DSoftAssignment
             return this.isProduce;
         }
 
+        public Boolean getIsOrganic()
+        {
+            return this.isOrganic;
+        }
+
+        public double getCost()
+        {
+            return this.cost;
+        }
+
         public void printStats(){
             Console.WriteLine(name + isProduce);
         }
