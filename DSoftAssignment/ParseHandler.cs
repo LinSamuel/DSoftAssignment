@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace DSoftAssignment
@@ -118,6 +119,27 @@ namespace DSoftAssignment
             //}
             return null;
         }
+        // could work? ^\d+(?:\.?\d*|\s\d+\/\d+|\d+\/\d+)$
+        public static RecipeIngredient parseRecipeLine(string input){
+            Regex re = new Regex(@"(\d+\/\d|\d+)");
+            //Match m = re.Match(input);
+            foreach (Match match in re.Matches(input))
+            {
+                Console.WriteLine(match);
+            }
+            //if (m.Success)
+            //{
+            //    foreach()
+            //    Console.WriteLine(string.Format("RegEx found " + m.Value + " at position " + m.Index.ToString()));
+            //}
+            //else
+            //{
+            //    Console.WriteLine("You didn't enter a string containing a number!");
+            //}
+            return null;
+        }
+
+        
 
         
     }

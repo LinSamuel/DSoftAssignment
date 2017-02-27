@@ -8,14 +8,23 @@ namespace DSoftAssignment
 {
     class Recipe
     {
-        List<Ingredient> ingredientList = new List<Ingredient>();
+        string name = "";
+        List<RecipeIngredient> ingredientList = new List<RecipeIngredient>();
 
         public Recipe()
         {
 
         }
 
-        public void addRecipeIngredient(Ingredient ingredient)
+        public Recipe(string name)
+        {
+            if (name != null)
+            {
+                this.name = name;
+            }
+        }
+
+        public void addRecipeIngredient(RecipeIngredient ingredient)
         {
             if (ingredient != null)
             {

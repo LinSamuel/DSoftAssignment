@@ -57,7 +57,18 @@ namespace DSoftAssignment
 
             // Boolean flag signifying if the input has reached the recipe portion (the latter half)
             Boolean recipeSection = false;
+
+            //Boolean flag representing on whether or not the beginning of a new recipe has started
+            Boolean newRecipe = false;
+
+            //Variable representing the current ingredient type being read in as input
             IngredientType currentType = IngredientType.Other;
+
+            // Recipe placeholder for the current recipe being populated
+            Recipe currRecipe = new Recipe();
+            string currRecipeName = "";
+
+            
             // Read each line read from the file
             foreach (string line in fileLines)
             {
@@ -100,11 +111,18 @@ namespace DSoftAssignment
                     {
                         Console.WriteLine("\n" + line);
                         recipeSection = true;
+                        newRecipe = true;
+                        currRecipeName = line.Trim();
                     }
                 }
                 else 
                 {   // Start processing recipes
-                    Console.WriteLine(":D");
+                    if (newRecipe)
+                    {
+                        currRecipe = new Recipe(currRecipeName);
+                        newRecipe = false;
+                    }
+                    RecipeIngredient currRecipeIngredient = ParseHandler.parseRecipeLine(line);
                 }
 
 
