@@ -126,8 +126,8 @@ namespace DSoftAssignment
             double amount = 0;
             foreach (Match match in re.Matches(input))
             {
-                Console.WriteLine(match);
-                Console.WriteLine("trying to parse...");
+                //Console.WriteLine(match);
+                //Console.WriteLine("trying to parse...");
                 try
                 {
                     amount += measurementConversion(match.ToString());
@@ -138,7 +138,7 @@ namespace DSoftAssignment
                 }
 
             }
-            Console.WriteLine("current double " + amount);
+            //Console.WriteLine("current double " + amount);
 
             Ingredient currIngredient = findIngredient(input, container);
 

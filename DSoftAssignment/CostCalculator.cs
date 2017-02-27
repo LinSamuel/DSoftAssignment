@@ -69,10 +69,12 @@ namespace DSoftAssignment
             string currRecipeName = "";
             int counter = 0; //Coutner variable to keep track of the amount of lines already iterated, used to check if the last line is currently being processed
 
-            
+            Console.WriteLine(fileLines.Length + "==");
             // Read each line read from the file
             foreach (string line in fileLines)
             {
+                counter++;
+                Console.WriteLine("counter is " + counter);
                 // Assumption, Ingredients first
                 if (!recipeSection)
                 {                    
@@ -141,13 +143,13 @@ namespace DSoftAssignment
                         //Console.WriteLine("adding " + currRecipeIngredient.getIngredient().getName());
                         currRecipe.addRecipeIngredient(currRecipeIngredient);
                     }
-                    //If it's the last line processed, then it's the last line for the last recipe as well
-                    if (counter == (fileLines.Length - 1))
+                    //If it's the last line processed, then it's the last line for the last recipe as well, so print recipe's cost statistics
+                    if (counter == (fileLines.Length))
                     {
-
+                        currRecipe.calculateStats();
                     }
                 }
-                counter++;
+
 
 
 
