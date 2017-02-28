@@ -64,12 +64,7 @@ namespace DSoftAssignment
          * 
          * EXPECTED VALUE: 0.21
          * 
-         * (1.92 + 0.16 + 0.17) * 0.086 = 0.1935 ---(round to nearest 7 cents) ---> = 0.21 [RIGHT ANSWER]
-         * 
-         * So the approach mentioned above is apparently the way this is expected to be calculated, 
-         * if you take into account the measurements, you get an incorrect answer:
-         * 
-         * (0.75 * 1.92) + (0.75 * 0.16) + (0.50 * 0.17) * 0.086 = 0.14147 ---(round to nearest 7 cents) ---> = 0.14 [WRONG ANSWER]
+         * (0.75 * 1.92) + (0.75 * 0.16) + (0.50 * 0.17) * 0.086 = 0.14147 ---(round up to nearest 7 cents) ---> = 0.21 [RIGHT ANSWER]
          * 
          *  ======== Example with recipe 2: ========
          *  Produce
@@ -98,19 +93,6 @@ namespace DSoftAssignment
          * EXPECTED VALUE: 0.91
          * 
          * [(4 * 2.19) + (0.5 * 1.92) + (0.5 * 1.26)] * 0.086 = 0.8901 ---(round up to nearest 7 cents) ---> = 0.91 [RIGHT ANSWER]
-         * 
-         * 
-         * 
-         * So the approach mentioned above is apparently the way this is expected to be calculated for example 2, 
-         * if you don't take into account the measurements like in example 1, you get an incorrect answer:
-         * 
-         * (2.19 + 1.92 + 1.26) * 0.086 = 0.46182 ---(round up to nearest 7 cents) ---> = 0.49 [WRONG ANSWER]
-         * 
-         * Conclusion: Because of the ambiguity, I have to make the decision on whether or not to include
-         * measurements when calculating the sales tax. When I implemented this function, I will go ahead
-         * and include measurements as well (like in example 2), because it would seem to make more sense
-         * that way.
-         * 
          * */
         public Decimal calculateSalesTax(){
             decimal salesTax = 0;
@@ -194,9 +176,9 @@ namespace DSoftAssignment
             Decimal discount = calculateDiscount();
             initialCost = initialCost + tax - discount;
             Console.WriteLine(this.name);
-            Console.WriteLine("Tax = $" + Math.Round(tax,2));
-            Console.WriteLine("Discount = ($" + Math.Round(discount,2) + ")");
-            Console.WriteLine("Total = $" + Math.Round(initialCost,2) + "\n");
+            Console.WriteLine("Tax = $" + Math.Round(tax, 2,MidpointRounding.AwayFromZero));
+            Console.WriteLine("Discount = ($" + Math.Round(discount, 2, MidpointRounding.AwayFromZero) + ")");
+            Console.WriteLine("Total = $" + Math.Round(initialCost, 2, MidpointRounding.AwayFromZero) + "\n");
         }
         
     }
