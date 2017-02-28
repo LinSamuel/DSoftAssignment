@@ -9,6 +9,8 @@ namespace DSoftAssignment
 {
     /*
      * Main program that holds the entry point for this assigment
+     * 
+     * Written by Samuel Lin on 2/28/17
      * */
     class CostCalculator
     {
