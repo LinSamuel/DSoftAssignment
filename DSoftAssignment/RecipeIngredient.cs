@@ -10,9 +10,9 @@ namespace DSoftAssignment
     class RecipeIngredient
     {
         private Ingredient ingredient;
-        private double amount;
+        private Decimal amount;
 
-        public RecipeIngredient(Ingredient ingredient, double amount)
+        public RecipeIngredient(Ingredient ingredient, Decimal amount)
         {
             this.ingredient = ingredient;
             this.amount = amount;
@@ -23,7 +23,7 @@ namespace DSoftAssignment
             return this.ingredient;
         }
 
-        public double getAmount()
+        public Decimal getAmount()
         {
             return this.amount;
         }

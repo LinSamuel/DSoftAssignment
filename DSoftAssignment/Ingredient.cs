@@ -19,16 +19,15 @@ namespace DSoftAssignment
         private IngredientType _type;
 
         // Cost of the ingredient for one unit of measurement
-        private Double cost;
+        private Decimal cost;
 
-        public Ingredient(String name, IngredientType type, Double cost, Boolean isOrganic)
+        public Ingredient(String name, IngredientType type, Decimal cost, Boolean isOrganic)
         {
             this.name = name;
             this._type = type;
             isProduce = this._type == IngredientType.Produce;
             this.cost = cost;
             this.isOrganic = isOrganic;
-            Console.WriteLine(name + isProduce);
         }
 
         public String getName(){
@@ -45,13 +44,13 @@ namespace DSoftAssignment
             return this.isOrganic;
         }
 
-        public double getCost()
+        public Decimal getCost()
         {
             return this.cost;
         }
 
         public void printStats(){
-            Console.WriteLine(name + isProduce);
+            Console.WriteLine(name + isProduce + " is it organic though? : " + isOrganic);
         }
     }
 }

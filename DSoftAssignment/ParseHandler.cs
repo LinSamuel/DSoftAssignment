@@ -58,7 +58,7 @@ namespace DSoftAssignment
             string ExtractedPrice = "";
             string IngredientName = "";
             Boolean isOrganic = false;
-            double IngredientPrice = 0;
+            Decimal IngredientPrice = 0;
             if (priceArray.Length > 0)
             {
                 //Extract Name (NOTE: check if capitals matter)
@@ -73,12 +73,12 @@ namespace DSoftAssignment
                 //Extract Price 
                 string Price = priceArray[priceArray.Length - 1].Trim();
                 ExtractedPrice = Price.TrimStart('$');
-                IngredientPrice = Convert.ToDouble(ExtractedPrice);
+                IngredientPrice = Convert.ToDecimal(ExtractedPrice);
 
                 // Logic to make sure line was successfully parsed so Ingredient object can be successfully made
                 if (!ExtractedPrice.Equals("") && !IngredientName.Equals(""))
                 {
-                    return new Ingredient(IngredientName.ToLower(), currentType, IngredientPrice, isOrganic);
+                    return new Ingredient(IngredientName.ToLower().Trim(), currentType, IngredientPrice, isOrganic);
                 }
             }
             //else 
@@ -144,10 +144,10 @@ namespace DSoftAssignment
 
             if (currIngredient != null && amount != 0)
             {
-                return new RecipeIngredient(currIngredient, amount);
+                return new RecipeIngredient(currIngredient, Convert.ToDecimal(amount));
             }
             //RecipeIngredient currRecipeIngredient = new RecipeIngredient(currIngredient, amount);
-            Console.WriteLine("returning null :(");
+            //Console.WriteLine("returning null :(");
             return null;
             //if (m.Success)
             //{

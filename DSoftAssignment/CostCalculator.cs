@@ -69,12 +69,11 @@ namespace DSoftAssignment
             string currRecipeName = "";
             int counter = 0; //Coutner variable to keep track of the amount of lines already iterated, used to check if the last line is currently being processed
 
-            Console.WriteLine(fileLines.Length + "==");
             // Read each line read from the file
             foreach (string line in fileLines)
             {
                 counter++;
-                Console.WriteLine("counter is " + counter);
+                //Console.WriteLine("counter is " + counter);
                 // Assumption, Ingredients first
                 if (!recipeSection)
                 {                    
@@ -98,7 +97,7 @@ namespace DSoftAssignment
 
                     if (!currentType.Equals(IngredientType.Other) && line.Length > 0 && line[0] == '-')
                     {
-                        Console.WriteLine("\n" + line);
+                        //Console.WriteLine("\n" + line);
 
                         //Add valid ingredients into the IngredientContainer
                         Ingredient newIngredient = ParseHandler.parseIngredientLine(line, currentType);
@@ -112,7 +111,6 @@ namespace DSoftAssignment
                     //Recipe section has been reached, start processing recipes
                     if (line.Length > 0 && line.Split()[0].Equals("Recipe"))
                     {
-                        Console.WriteLine("\n" + line);
                         recipeSection = true;
                         newRecipe = true;
                         currRecipeName = line.Trim();
@@ -128,12 +126,13 @@ namespace DSoftAssignment
                     // New recipe detected, start a new recipe
                     if (line.Length > 0 && line.Split()[0].Equals("Recipe"))
                     {
-                        Console.WriteLine("\n New recipe: " + line);
+                        //Console.WriteLine("\n New recipe: " + line);
                         recipeSection = true;
                         newRecipe = true;
                         currRecipeName = line.Trim();
 
                         // Print recipe stats here
+                        currRecipe.whatsintherecipe();
                         currRecipe.calculateStats();
                     }
                     RecipeIngredient currRecipeIngredient = ParseHandler.parseRecipeLine(line, ingredientContainer);
@@ -146,6 +145,7 @@ namespace DSoftAssignment
                     //If it's the last line processed, then it's the last line for the last recipe as well, so print recipe's cost statistics
                     if (counter == (fileLines.Length))
                     {
+                        currRecipe.whatsintherecipe();
                         currRecipe.calculateStats();
                     }
                 }

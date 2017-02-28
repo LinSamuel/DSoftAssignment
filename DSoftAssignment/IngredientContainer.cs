@@ -40,7 +40,6 @@ namespace DSoftAssignment
             }
             catch (KeyNotFoundException)
             {
-                Console.WriteLine("Key = \"tif\" is not found.");
                 return null;
             }
 
