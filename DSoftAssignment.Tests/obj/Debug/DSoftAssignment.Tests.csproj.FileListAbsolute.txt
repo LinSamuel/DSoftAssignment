@@ -1,0 +1,7 @@
+C:\Users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment.Tests\bin\Debug\DSoftAssignment.Tests.dll
+C:\Users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment.Tests\bin\Debug\DSoftAssignment.Tests.pdb
+C:\Users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment.Tests\bin\Debug\DSoftAssignment.exe
+C:\Users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment.Tests\bin\Debug\DSoftAssignment.pdb
+C:\Users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment.Tests\obj\Debug\DSoftAssignment.Tests.csprojResolveAssemblyReference.cache
+C:\Users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment.Tests\obj\Debug\DSoftAssignment.Tests.dll
+C:\Users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment.Tests\obj\Debug\DSoftAssignment.Tests.pdb

@@ -61,7 +61,7 @@ namespace DSoftAssignment
             //Boolean flag representing on whether or not the beginning of a new recipe has started
             Boolean newRecipe = false;
 
-            //Variable representing the current ingredient type being read in as input
+            //Variable representing the current ingredient type being read in as input, initialize with 'other' placeholder
             IngredientType currentType = IngredientType.Other;
 
             // Recipe placeholder for the current recipe being populated

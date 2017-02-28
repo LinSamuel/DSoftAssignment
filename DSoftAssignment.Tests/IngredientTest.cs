@@ -18,9 +18,10 @@ namespace DSoftAssignment.Tests
             IngredientType type = IngredientType.Produce;
             Decimal cost = 0.67m;
             Boolean isOrganic = true;
-            Ingredient temp = new Ingredient(name, type, cost, isOrgnanic);
+            Ingredient temp = new Ingredient(name, type, cost, isOrganic);
 
             // Act
+            
 
             // Assert
         }

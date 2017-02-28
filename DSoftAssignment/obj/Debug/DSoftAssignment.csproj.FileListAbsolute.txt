@@ -1,6 +1,6 @@
 c:\users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment\bin\Debug\DSoftAssignment.exe.config
 c:\users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment\bin\Debug\DSoftAssignment.exe
 c:\users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment\bin\Debug\DSoftAssignment.pdb
-c:\users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment\obj\Debug\DSoftAssignment.csprojResolveAssemblyReference.cache
 c:\users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment\obj\Debug\DSoftAssignment.exe
 c:\users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment\obj\Debug\DSoftAssignment.pdb
+C:\Users\sam\documents\visual studio 2013\Projects\DSoftAssignment\DSoftAssignment\obj\Debug\DSoftAssignment.csprojResolveAssemblyReference.cache

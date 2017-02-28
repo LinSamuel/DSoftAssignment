@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>451bfec4-5c8d-4236-8015-04f05956cc8c</ProjectGuid>
+    <ProjectGuid>{6CC87660-F79F-43F8-B6F2-55E30F23163B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DSoftAssignment.Tests</RootNamespace>
@@ -50,8 +50,15 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="IngredientTest.cs" />
+    <Compile Include="ParseHandlerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DSoftAssignment\DSoftAssignment.csproj">
+      <Project>{b2883ae0-69e5-4495-8ac2-2c852aa8db31}</Project>
+      <Name>DSoftAssignment</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
