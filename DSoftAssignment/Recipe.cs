@@ -169,12 +169,7 @@ namespace DSoftAssignment
             Decimal initialCost = calculateRawTotalCost();
             Decimal tax = calculateSalesTax();
             Decimal discount = calculateDiscount();
-            //Console.WriteLine(this.name);
-            //Console.WriteLine("Tax = $" + tax);
-            //Console.WriteLine("Discount = ($" + discount + ")");
-            //Console.WriteLine("Total = $" + initialCost + "\n");
             initialCost = initialCost + tax - discount;
-            //Console.WriteLine("Total2 = $" + initialCost + "\n");
             Console.WriteLine(this.name);
             Console.WriteLine("Tax = $" + Math.Round(tax, 2,MidpointRounding.AwayFromZero));
             Console.WriteLine("Discount = ($" + Math.Round(discount, 2, MidpointRounding.AwayFromZero) + ")");

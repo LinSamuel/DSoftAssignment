@@ -83,8 +83,16 @@ namespace DSoftAssignment
             }
             return null;
         }
-        // could work? ^\d+(?:\.?\d*|\s\d+\/\d+|\d+\/\d+)$
+
         public static RecipeIngredient parseRecipeLine(string input, IngredientContainer container){
+
+            // If input is empty, return null, or if the first character in the line 
+            // is not a '- character, it is considered error
+            if (input.Length == 0 || input[0] != '-')
+            {
+                return null;
+            }
+
             Regex re = new Regex(@"(\d+\/\d|\d+)");
             //Match m = re.Match(input);
             double amount = 0;
@@ -152,7 +160,7 @@ namespace DSoftAssignment
                 }
             }
 
-            throw new FormatException("Not a valid fraction.");
+            throw new FormatException("Invalid input");
         }
         
         // Helper function to help identify ingredient given a recipe line
@@ -163,7 +171,6 @@ namespace DSoftAssignment
             //Iterate through the key names and pinpoint an ingredient where the name
             foreach (string name in containerKeys)
             {
-                //Console.WriteLine("searching for.." + name + " in " + input);
                 if (input.Contains(name.Trim()))
                 {
                     //Console.WriteLine("found!0");

@@ -10,6 +10,8 @@ namespace DSoftAssignment.Tests
     [TestClass]
     public class ParseHandlerTest
     {
+        
+
         [TestMethod]
         public void ValidIngredientStringParseSuccess()
         {
@@ -77,5 +79,7 @@ namespace DSoftAssignment.Tests
             // Assert
             Assert.IsNull(theIngredient);
         }
+
+        
     }
 }
