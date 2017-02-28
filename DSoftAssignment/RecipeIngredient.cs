@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace DSoftAssignment
 {
     // Class that respresents a recipe ingredient. It holds 2 attributes, the ingredient name, and the quantity of the respective ingredient
-    class RecipeIngredient
+    public class RecipeIngredient
     {
         private Ingredient ingredient;
         private Decimal amount;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DSoftAssignment
 {
-    class Recipe
+    public class Recipe
     {
         string name = "";
         List<RecipeIngredient> ingredientList = new List<RecipeIngredient>();
@@ -30,17 +30,6 @@ namespace DSoftAssignment
             {
                 ingredientList.Add(ingredient);
             }
-        }
-
-        public void whatsintherecipe()
-        {
-            Console.WriteLine(this.name + " has: ");
-            foreach (RecipeIngredient ingred in ingredientList)
-            {
-                Console.WriteLine(ingred.getAmount() + " of " + ingred.getIngredient().getName());
-                
-            }
-
         }
 
         // After analyzing the sample output, the examples demonstrate that the measurements are taken into account, and the
@@ -111,7 +100,7 @@ namespace DSoftAssignment
             return Math.Round(Decimal.Ceiling(Decimal.Multiply(salesTax, new Decimal(0.086)) / 7)) * 7 / 100;
         }
 
-        // After analyzing the sample output, it seems the discount DOES into account the measurements in the recipe
+        // After analyzing the sample output, the discount DOES take into account the measurements in the recipe
         // The wellness discount is calculated by taking 5% of the price of ORGANIC ingredients after taking into account the measurements
         /*
          *  Example:
@@ -153,7 +142,13 @@ namespace DSoftAssignment
                 }
 
             }
-            return Math.Round(Decimal.Multiply(discount, new Decimal(0.05)),2);
+
+            //Round up logic
+            discount *= 0.05m;
+            discount *= 100;
+            discount = Decimal.Add(discount, 0.5m);
+            discount /= 100;
+            return discount;
 
         }
 
@@ -174,11 +169,29 @@ namespace DSoftAssignment
             Decimal initialCost = calculateRawTotalCost();
             Decimal tax = calculateSalesTax();
             Decimal discount = calculateDiscount();
+            //Console.WriteLine(this.name);
+            //Console.WriteLine("Tax = $" + tax);
+            //Console.WriteLine("Discount = ($" + discount + ")");
+            //Console.WriteLine("Total = $" + initialCost + "\n");
             initialCost = initialCost + tax - discount;
+            //Console.WriteLine("Total2 = $" + initialCost + "\n");
             Console.WriteLine(this.name);
             Console.WriteLine("Tax = $" + Math.Round(tax, 2,MidpointRounding.AwayFromZero));
             Console.WriteLine("Discount = ($" + Math.Round(discount, 2, MidpointRounding.AwayFromZero) + ")");
             Console.WriteLine("Total = $" + Math.Round(initialCost, 2, MidpointRounding.AwayFromZero) + "\n");
+        }
+
+
+        //Used for debug purposes
+        public void whatsInTheRecipe()
+        {
+            Console.WriteLine(this.name + " has: ");
+            foreach (RecipeIngredient ingred in ingredientList)
+            {
+                Console.WriteLine(ingred.getAmount() + " of " + ingred.getIngredient().getName());
+
+            }
+
         }
         
     }

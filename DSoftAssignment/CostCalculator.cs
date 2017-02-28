@@ -132,7 +132,6 @@ namespace DSoftAssignment
                         currRecipeName = line.Trim();
 
                         // Print recipe stats here
-                        currRecipe.whatsintherecipe();
                         currRecipe.calculateStats();
                     }
                     RecipeIngredient currRecipeIngredient = ParseHandler.parseRecipeLine(line, ingredientContainer);
@@ -145,7 +144,6 @@ namespace DSoftAssignment
                     //If it's the last line processed, then it's the last line for the last recipe as well, so print recipe's cost statistics
                     if (counter == (fileLines.Length))
                     {
-                        currRecipe.whatsintherecipe();
                         currRecipe.calculateStats();
                     }
                 }

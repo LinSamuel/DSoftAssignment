@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DSoftAssignment
 {
-    class IngredientContainer
+    public class IngredientContainer
     {
         //Dictionary with Ingredient name string keys and Ingredient Object values
         Dictionary<String, Ingredient> IngredientDict = new Dictionary<String, Ingredient>();

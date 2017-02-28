@@ -12,7 +12,7 @@ namespace DSoftAssignment
      * ParseHandler class parses input strings and returns a corresponding ingredient or recipe object 
      * */
 
-    class ParseHandler
+    public class ParseHandler
     {
         /*  Make a decription string array
          *  Example strings: 1 cup of organic olive oil = $1.92, 1 chicken breast = $2.19
@@ -23,7 +23,6 @@ namespace DSoftAssignment
          *  - Ignore 'of'
          *  - Check if 'organic' is in the string
          *  
-         *  TODO: turn this into a factory maybe?
          * */
 
         public static Ingredient parseIngredientLine(string input, IngredientType currentType)

@@ -11,7 +11,7 @@ namespace DSoftAssignment
      * 
      * */
     public enum IngredientType { Produce, Meat, Pantry, Other };
-    class Ingredient
+    public class Ingredient
     {
         private Boolean isProduce;
         private Boolean isOrganic;
@@ -49,8 +49,9 @@ namespace DSoftAssignment
             return this.cost;
         }
 
+        //Debug purposes
         public void printStats(){
-            Console.WriteLine(name + isProduce + " is it organic though? : " + isOrganic);
+            Console.WriteLine(name + " " + isProduce + " is it organic though? : " + isOrganic);
         }
     }
 }
