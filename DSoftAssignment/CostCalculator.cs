@@ -41,8 +41,17 @@ namespace DSoftAssignment
              * */
 
             //Holds the lines from the input.txt file
-            string[] fileLines = getInput();
-
+            string[] fileLines;
+            
+            try {
+                fileLines = getInput();
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Can not find input.txt file, program will close now.");
+                Console.ReadKey();
+                return;
+            }
             IngredientContainer ingredientContainer = new IngredientContainer();
 
             // Boolean flag signifying if the input has reached the recipe portion (the latter half)
