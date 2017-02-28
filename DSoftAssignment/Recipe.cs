@@ -6,16 +6,24 @@ using System.Threading.Tasks;
 
 namespace DSoftAssignment
 {
+    /*
+     * Class that represents the recipe object, that has a name attribute and a RecipeIngredient List attribute
+     * 
+     * Also deals with calculating the tax, discount, and total cost with respect to the recipe
+     * */
     public class Recipe
     {
+        //Name of this recipe (e.g. Recipe 1)
         string name = "";
+
+        // List of RecipeIngredient Objects
         List<RecipeIngredient> ingredientList = new List<RecipeIngredient>();
 
         public Recipe()
         {
 
         }
-
+        //Constructor
         public Recipe(string name)
         {
             if (name != null)
@@ -24,6 +32,7 @@ namespace DSoftAssignment
             }
         }
 
+        //Add recipe ingredient
         public void addRecipeIngredient(RecipeIngredient ingredient)
         {
             if (ingredient != null)
@@ -96,7 +105,7 @@ namespace DSoftAssignment
                 
             }
             salesTax *= 100;
-            //return Math.Round(salesTax * 0.086 / 7) * 7 / 100;
+            //Round up to nearest 7 cents
             return Math.Round(Decimal.Ceiling(Decimal.Multiply(salesTax, new Decimal(0.086)) / 7)) * 7 / 100;
         }
 
@@ -142,8 +151,13 @@ namespace DSoftAssignment
                 }
 
             }
+            //If there are no organic items, no discount, and don't round up
+            if (discount == 0)
+            {
+                return discount;
+            }
 
-            //Round up logic
+            //Round up to nearest cent logic
             discount *= 0.05m;
             discount *= 100;
             discount = Decimal.Add(discount, 0.5m);
@@ -152,18 +166,19 @@ namespace DSoftAssignment
 
         }
 
+        // Calculates cost of recipe object ignoring sales tax and discount
         public Decimal calculateRawTotalCost()
         {
             Decimal totalCost = 0;
             foreach (RecipeIngredient ingred in ingredientList)
             {
-                //totalCost += ingred.getAmount() * ingred.getIngredient().getCost();
                 Decimal currentIncrease = Decimal.Multiply(ingred.getIngredient().getCost(), ingred.getAmount());
                 totalCost = Decimal.Add(totalCost, currentIncrease);
             }
             return totalCost;
         }
 
+        // Function that prints out the 3 lines of statistics (tax, discount, total) for the recipe
         public void calculateStats()
         {
             Decimal initialCost = calculateRawTotalCost();

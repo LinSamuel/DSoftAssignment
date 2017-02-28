@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace DSoftAssignment
 {
+    /*
+     * Class representing an IngredientContainer, a wrapper around a dictionary that have ingredient string name keys
+     * and Ingredient values. Used when trying to extract information when building recipes
+     * 
+     * */
     public class IngredientContainer
     {
         //Dictionary with Ingredient name string keys and Ingredient Object values
@@ -27,11 +32,13 @@ namespace DSoftAssignment
             }
         }
 
+        // Returns the Keys (the names of the ingredients) of the dictionary (for findIngredient function in ParseHandler)
         public Dictionary<string, Ingredient>.KeyCollection getContainerKeys()
         {
             return this.IngredientDict.Keys;
         }
 
+        //Getters
         public Ingredient getIngredient(String name)
         {
             try
@@ -43,15 +50,6 @@ namespace DSoftAssignment
                 return null;
             }
 
-        }
-
-        public void printDict()
-        {
-            foreach (KeyValuePair<string, Ingredient> kvp in this.IngredientDict)
-            {
-                Console.WriteLine("Key = {0}, Value = {1}",
-                    kvp.Key, kvp.Value);
-            }
         }
     }
 }

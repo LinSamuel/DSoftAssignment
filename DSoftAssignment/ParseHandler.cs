@@ -14,7 +14,7 @@ namespace DSoftAssignment
 
     public class ParseHandler
     {
-        /*  Make a decription string array
+        /*  
          *  Example strings: 1 cup of organic olive oil = $1.92, 1 chicken breast = $2.19
          *  - The first character will always be a single unit for that particular ingredient
          *  - Next character will either be:
@@ -61,15 +61,14 @@ namespace DSoftAssignment
             Decimal IngredientPrice = 0;
             if (priceArray.Length > 0)
             {
-                //Extract Name (NOTE: check if capitals matter)
+                //Extract Name 
                 IngredientName = priceArray[0];
+                //Check if 'organic' is present, if it is, extract from name string and set ingredient to organic type
                 if (IngredientName.Contains("organic"))
                 {
                     isOrganic = true;
                     IngredientName = IngredientName.Substring(7).Trim(); // NOTE: organic is 7 letters, so the name should be contained in the substring following the 7th index
                 }
-                //Check if 'organic' is present, if it is, extract from name string and set ingredient to organic type
-
                 //Extract Price 
                 string Price = priceArray[priceArray.Length - 1].Trim();
                 ExtractedPrice = Price.TrimStart('$');
@@ -81,6 +80,8 @@ namespace DSoftAssignment
                     return new Ingredient(IngredientName.ToLower().Trim(), currentType, IngredientPrice, isOrganic);
                 }
             }
+
+            // Any parsing error will lead to a null return
             return null;
         }
 
@@ -92,9 +93,9 @@ namespace DSoftAssignment
             {
                 return null;
             }
-
+             
+            // Regulat expression that looks for a single number, a fraction, or a number AND a fraction
             Regex re = new Regex(@"(\d+\/\d|\d+)");
-            //Match m = re.Match(input);
             double amount = 0;
             foreach (Match match in re.Matches(input))
             {
@@ -135,27 +136,27 @@ namespace DSoftAssignment
             {
                 return result;
             }
-
-            string[] split = amount.Split(new char[] { ' ', '/' });
+            char[] whiteSpaceList = { ' ', '/' };
+            string[] split = amount.Split(whiteSpaceList);
 
             if (split.Length == 2 || split.Length == 3)
             {
-                int a, b;
+                int first, second;
 
-                if (int.TryParse(split[0], out a) && int.TryParse(split[1], out b))
+                if (int.TryParse(split[0], out first) && int.TryParse(split[1], out second))
                 {
                     // Scenario when input is just a fraction (e.g. 3/4)
                     if (split.Length == 2)
                     {
-                        return (double)a / b;
+                        return (double)first / second;
                     }
 
-                    int c;
+                    int third;
 
                     // Scenario when input is a number and a fraction (e.g. 1 1/4)
-                    if (int.TryParse(split[2], out c))
+                    if (int.TryParse(split[2], out third))
                     {
-                        return a + (double)b / c;
+                        return first + (double)second / third;
                     }
                 }
             }
@@ -173,7 +174,6 @@ namespace DSoftAssignment
             {
                 if (input.Contains(name.Trim()))
                 {
-                    //Console.WriteLine("found!0");
                     return container.getIngredient(name);
                 }
             }

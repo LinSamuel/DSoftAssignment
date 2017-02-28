@@ -42,10 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CostCalculator.cs" />
+    <Compile Include="GetCurrDirectoryClass.cs" />
     <Compile Include="Ingredient.cs" />
     <Compile Include="IngredientContainer.cs" />
     <Compile Include="ParseHandler.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recipe.cs" />
     <Compile Include="RecipeIngredient.cs" />

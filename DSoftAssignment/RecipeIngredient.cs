@@ -12,12 +12,14 @@ namespace DSoftAssignment
         private Ingredient ingredient;
         private Decimal amount;
 
+        // Constructor
         public RecipeIngredient(Ingredient ingredient, Decimal amount)
         {
             this.ingredient = ingredient;
             this.amount = amount;
         }
 
+        //Getters
         public Ingredient getIngredient()
         {
             return this.ingredient;

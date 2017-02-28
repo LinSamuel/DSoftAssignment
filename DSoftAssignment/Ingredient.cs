@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace DSoftAssignment
 {
 
-    /* Class representing a single ingredient type
+    /* 
+     * Class representing a single ingredient type
      * 
      * */
     public enum IngredientType { Produce, Meat, Pantry, Other };
@@ -21,6 +22,7 @@ namespace DSoftAssignment
         // Cost of the ingredient for one unit of measurement
         private Decimal cost;
 
+        //Constructor
         public Ingredient(String name, IngredientType type, Decimal cost, Boolean isOrganic)
         {
             this.name = name;
@@ -30,6 +32,7 @@ namespace DSoftAssignment
             this.isOrganic = isOrganic;
         }
 
+        //Getters
         public String getName(){
             return this.name;
         }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace DSoftAssignment
 {
+    /*
+     * Main program that holds the entry point for this assigment
+     * */
     class CostCalculator
     {
         string[] fileInput = new string[]{};
@@ -16,27 +19,13 @@ namespace DSoftAssignment
         */
         public static string[] getInput()
         {
-            return System.IO.File.ReadAllLines(@"C:\Users\sam\Documents\Visual Studio 2013\Projects\DSoftAssignment\input.txt");
+            GetCurrDirectoryClass helper = new GetCurrDirectoryClass();
+            string theDirectory = helper.getCurrDirectory();
+            return System.IO.File.ReadAllLines(theDirectory + @"\input.txt");
         }
         static void Main(string[] args)
         {
-            //Console.WriteLine(Environment.CurrentDirectory);
-
-            // Instantiate the CostCalulator Class
-
-            //CostCalculator MainCalculator = new CostCalculator();
-
-            // Read input from the input.txt file
-            //MainCalculator.getInput();
-
-            //Console.Write(MainCalculator.fileInput);
-
-            //string text = System.IO.File.ReadAllText(@"C:\Users\sam\Documents\Visual Studio 2013\Projects\DSoftAssignment\input.txt");
-
-            // Display the file contents to the console. Variable text is a string.
-            // System.Console.WriteLine("Contents of WriteText.txt = {0}", text);
-
-            /* Assumption: Input is organized in the following format:
+            /* Assumption: Input is organized in the following format, ingredients first, then recipes:
              * 
              * "Ingredients" header
              * 
@@ -51,6 +40,7 @@ namespace DSoftAssignment
              * 
              * */
 
+            //Holds the lines from the input.txt file
             string[] fileLines = getInput();
 
             IngredientContainer ingredientContainer = new IngredientContainer();
@@ -67,13 +57,12 @@ namespace DSoftAssignment
             // Recipe placeholder for the current recipe being populated
             Recipe currRecipe = new Recipe();
             string currRecipeName = "";
-            int counter = 0; //Coutner variable to keep track of the amount of lines already iterated, used to check if the last line is currently being processed
+            int counter = 0; //Counter variable to keep track of the amount of lines already iterated, used to check if the last line is currently being processed
 
             // Read each line read from the file
             foreach (string line in fileLines)
             {
                 counter++;
-                //Console.WriteLine("counter is " + counter);
                 // Assumption, Ingredients first
                 if (!recipeSection)
                 {                    
@@ -107,7 +96,6 @@ namespace DSoftAssignment
                         }                      
 
                     }
-
                     //Recipe section has been reached, start processing recipes
                     if (line.Length > 0 && line.Split()[0].Equals("Recipe"))
                     {
@@ -147,14 +135,7 @@ namespace DSoftAssignment
                         currRecipe.calculateStats();
                     }
                 }
-
-
-
-
             }
-
-            //ingredientContainer.printDict();
-
             Console.ReadKey();
         }
     }
